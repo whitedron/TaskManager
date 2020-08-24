@@ -14,9 +14,20 @@ const isRepeating = (repeating) => {
   return Object.values(repeating).some(Boolean);
 };
 
+const renderHashTags = (hashTags) => {
+  let hashTagsNode = ``;
+  for (let item of hashTags) {
+    hashTagsNode += `<span class="card__hashtag-inner">
+    <span class="card__hashtag-name">
+      #${item}
+    </span>
+   </span>`
+  }
+  return hashTagsNode;
+}
 
 export const createTaskTemplate = (task) => {
-  const {color, description, dueDate, repeating, isArchive, isFavorite} = task;
+  const {color, description, dueDate, repeating, isArchive, isFavorite, hashTags} = task;
 
   const date = dueDate !== null
     ? dueDate.toLocaleString(`en-US`, {day: `numeric`, month: `long`})
@@ -37,6 +48,8 @@ export const createTaskTemplate = (task) => {
   const favoriteClassName = isFavorite
     ? `card__btn--favorites card__btn--disabled`
     : `card__btn--favorites`;
+
+  const hashTagsNode = renderHashTags(hashTags);
 
   return (`<article class="card card--${color} ${deadlineClassName} ${repeatClassName}">
     <div class="card__form">
@@ -77,23 +90,7 @@ export const createTaskTemplate = (task) => {
 
             <div class="card__hashtag">
               <div class="card__hashtag-list">
-                <span class="card__hashtag-inner">
-                  <span class="card__hashtag-name">
-                    #todo
-                  </span>
-                </span>
-
-                <span class="card__hashtag-inner">
-                  <span class="card__hashtag-name">
-                    #personal
-                  </span>
-                </span>
-
-                <span class="card__hashtag-inner">
-                  <span class="card__hashtag-name">
-                    #important
-                  </span>
-                </span>
+                ${hashTagsNode}
               </div>
             </div>
           </div>

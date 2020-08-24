@@ -61,6 +61,15 @@ const getRandomColor = () => {
   return colors[randomIndex];
 };
 
+const generateHashTags = () => {
+const MAX_HASHTAG_COUNT = 3;
+ const tags = [`homework`, `theory`, `practice`, `intensive`, `keks`];
+ let hashTags = new Set();
+ for (let i=0; i<getRandomInteger(0,MAX_HASHTAG_COUNT);i++) {
+   hashTags.add(tags[getRandomInteger(0,tags.length-1)]);
+ };
+ return hashTags;
+};
 
 export const generateTask = () => {
   const dueDate = generateDate();
@@ -79,6 +88,7 @@ export const generateTask = () => {
     dueDate,
     repeating,
     color: getRandomColor(),
+    hashTags: generateHashTags(),
     isArchive: Boolean(getRandomInteger(0, 1)),
     isFavorite: Boolean(getRandomInteger(0, 1))
   };
