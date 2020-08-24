@@ -71,6 +71,26 @@ const createTaskEditColorsTemplate = (currentColor) => {
   >`).join(``);
 };
 
+const createTaskEditHashTagTemplate = (hashTags) => {
+  console.log(hashTags);
+  return [...hashTags].map((hashTag) => `
+  <span class="card__hashtag-inner">
+  <input
+    type="hidden"
+    name="hashtag"
+    value="repeat"
+    class="card__hashtag-hidden-input"
+  />
+  <p class="card__hashtag-name">
+    #${hashTag}
+  </p>
+  <button type="button" class="card__hashtag-delete">
+    delete
+  </button>
+</span>
+  `).join(``);
+};
+
 
 export const createEditTaskTemplate = (task = {}) => {
   const {
@@ -85,7 +105,8 @@ export const createEditTaskTemplate = (task = {}) => {
       fr: false,
       sa: false,
       su: false
-    }
+    },
+    hashTags = new Set()
   } = task;
 
   const deadlineClassName = isExpired(dueDate)
@@ -98,6 +119,7 @@ export const createEditTaskTemplate = (task = {}) => {
     : ``;
     const repeatingTemplate = createTaskEditRepeatingTemplate(repeating);
     const colorsTemplate = createTaskEditColorsTemplate(color);
+    const hashTagsTemplate = createTaskEditHashTagTemplate(hashTags);
 
   return (
     `<article class="card card--edit card--${color} ${deadlineClassName} ${repeatingClassName}">
@@ -128,50 +150,7 @@ export const createEditTaskTemplate = (task = {}) => {
 
             <div class="card__hashtag">
               <div class="card__hashtag-list">
-                <span class="card__hashtag-inner">
-                  <input
-                    type="hidden"
-                    name="hashtag"
-                    value="repeat"
-                    class="card__hashtag-hidden-input"
-                  />
-                  <p class="card__hashtag-name">
-                    #repeat
-                  </p>
-                  <button type="button" class="card__hashtag-delete">
-                    delete
-                  </button>
-                </span>
-
-                <span class="card__hashtag-inner">
-                  <input
-                    type="hidden"
-                    name="hashtag"
-                    value="repeat"
-                    class="card__hashtag-hidden-input"
-                  />
-                  <p class="card__hashtag-name">
-                    #cinema
-                  </p>
-                  <button type="button" class="card__hashtag-delete">
-                    delete
-                  </button>
-                </span>
-
-                <span class="card__hashtag-inner">
-                  <input
-                    type="hidden"
-                    name="hashtag"
-                    value="repeat"
-                    class="card__hashtag-hidden-input"
-                  />
-                  <p class="card__hashtag-name">
-                    #entertaiment
-                  </p>
-                  <button type="button" class="card__hashtag-delete">
-                    delete
-                  </button>
-                </span>
+              ${hashTagsTemplate}
               </div>
 
               <label>

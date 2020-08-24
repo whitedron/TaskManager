@@ -15,15 +15,12 @@ const isRepeating = (repeating) => {
 };
 
 const renderHashTags = (hashTags) => {
-  let hashTagsNode = ``;
-  for (let item of hashTags) {
-    hashTagsNode += `<span class="card__hashtag-inner">
+  return [...hashTags].map((hashTag) => `
+  <span class="card__hashtag-inner">
     <span class="card__hashtag-name">
-      #${item}
+      #${hashTag}
     </span>
-   </span>`
-  }
-  return hashTagsNode;
+  </span>`).join(``);
 }
 
 export const createTaskTemplate = (task) => {
