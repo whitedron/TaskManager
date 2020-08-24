@@ -4,9 +4,14 @@ import {createBoardTemplate} from './components/board.js';
 import {createEditTaskTemplate} from './components/edit-task.js';
 import {createTaskTemplate} from './components/task.js';
 import {createLoadMoreButtonTemplate} from './components/load-more-button.js';
+import {generateTask} from './mock/task.js';
 
 const TASK_COUNT = 5;
 
+const tasks = new Array(TASK_COUNT).fill().map(generateTask);
+for (const ctask of tasks) {
+  console.log(ctask);
+}
 const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
 };
