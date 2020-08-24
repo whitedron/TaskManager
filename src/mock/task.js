@@ -42,23 +42,45 @@ const generateDate = () => {
   return new Date(currentDate);
 };
 
+const generateRepeating = () => {
+  return {
+    mo: false,
+    tu: false,
+    we: Boolean(getRandomInteger(0, 1)),
+    th: false,
+    fr: Boolean(getRandomInteger(0, 1)),
+    sa: false,
+    su: false
+  };
+};
+
+const getRandomColor = () => {
+  const colors = [`black`, `yellow`, `blue`, `green`, `pink`];
+  const randomIndex = getRandomInteger(0, colors.length - 1);
+
+  return colors[randomIndex];
+};
+
+
 export const generateTask = () => {
   const dueDate = generateDate();
+  const repeating = dueDate === null ? generateRepeating():
+  {
+    mo: false,
+    tu: false,
+    we: false,
+    th: false,
+    fr: false,
+    sa: false,
+    su: false
+  };
   const task = {
     description: generateDescription(),
     dueDate,
-    repeating: {
-      mo: false,
-      tu: false,
-      we: false,
-      th: false,
-      fr: false,
-      sa: false,
-      su: false
-    },
-    color: `black`,
-    isArchive: false,
-    isFavorite: false
+    repeating,
+    color: getRandomColor(),
+    isArchive: Boolean(getRandomInteger(0, 1)),
+    isFavorite: Boolean(getRandomInteger(0, 1))
   };
  // console.log(task);
   return task;

@@ -9,9 +9,7 @@ import {generateTask} from './mock/task.js';
 const TASK_COUNT = 5;
 
 const tasks = new Array(TASK_COUNT).fill().map(generateTask);
-for (const ctask of tasks) {
-  console.log(ctask);
-}
+
 const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
 };
@@ -27,7 +25,9 @@ const taskListElement = siteMainElement.querySelector(`.board__tasks`);
 
 render(taskListElement, createEditTaskTemplate());
 for (let i = 0; i < TASK_COUNT; i++) {
-  render(taskListElement, createTaskTemplate());
+    console.log(tasks[i]);
+  render(taskListElement, createTaskTemplate(tasks[i]));
 }
+
 
 render(taskListElement, createLoadMoreButtonTemplate());
