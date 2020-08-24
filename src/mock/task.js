@@ -64,16 +64,16 @@ const getRandomColor = () => {
 
 export const generateTask = () => {
   const dueDate = generateDate();
-  const repeating = dueDate === null ? generateRepeating():
-  {
-    mo: false,
-    tu: false,
-    we: false,
-    th: false,
-    fr: false,
-    sa: false,
-    su: false
-  };
+  const repeating = dueDate === null ? generateRepeating() :
+    {
+      mo: false,
+      tu: false,
+      we: false,
+      th: false,
+      fr: false,
+      sa: false,
+      su: false
+    };
   const task = {
     description: generateDescription(),
     dueDate,
@@ -82,6 +82,6 @@ export const generateTask = () => {
     isArchive: Boolean(getRandomInteger(0, 1)),
     isFavorite: Boolean(getRandomInteger(0, 1))
   };
- // console.log(task);
+  // console.log(task);
   return task;
 };
