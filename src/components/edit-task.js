@@ -58,7 +58,6 @@ const createTaskEditColorsTemplate = (currentColor) => {
 };
 
 const createTaskEditHashTagTemplate = (hashTags) => {
-  console.log(hashTags);
   return [...hashTags].map((hashTag) => `
   <span class="card__hashtag-inner">
   <input
@@ -103,9 +102,9 @@ export const createEditTaskTemplate = (task = {}) => {
   const repeatingClassName = isTaskRepeating(repeating)
     ? `card--repeat`
     : ``;
-    const repeatingTemplate = createTaskEditRepeatingTemplate(repeating);
-    const colorsTemplate = createTaskEditColorsTemplate(color);
-    const hashTagsTemplate = createTaskEditHashTagTemplate(hashTags);
+  const repeatingTemplate = createTaskEditRepeatingTemplate(repeating);
+  const colorsTemplate = createTaskEditColorsTemplate(color);
+  const hashTagsTemplate = createTaskEditHashTagTemplate(hashTags);
 
   return (
     `<article class="card card--edit card--${color} ${deadlineClassName} ${repeatingClassName}">

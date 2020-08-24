@@ -7,7 +7,7 @@ const renderHashTags = (hashTags) => {
       #${hashTag}
     </span>
   </span>`).join(``);
-}
+};
 
 export const createTaskTemplate = (task) => {
   const {color, description, dueDate, repeating, isArchive, isFavorite, hashTags} = task;

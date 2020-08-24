@@ -1,11 +1,5 @@
-
-const getRandomInteger = (a = 0, b = 1) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
-
-  return Math.floor(lower + Math.random() * (upper - lower + 1));
-};
-
+import {COLORS} from "../const.js";
+import {getRandomInteger} from "../utils.js";
 
 const generateDescription = () => {
   const descriptions = [
@@ -55,20 +49,18 @@ const generateRepeating = () => {
 };
 
 const getRandomColor = () => {
-  const colors = [`black`, `yellow`, `blue`, `green`, `pink`];
-  const randomIndex = getRandomInteger(0, colors.length - 1);
-
-  return colors[randomIndex];
+  const randomIndex = getRandomInteger(0, COLORS.length - 1);
+  return COLORS[randomIndex];
 };
 
 const generateHashTags = () => {
-const MAX_HASHTAG_COUNT = 3;
- const tags = [`homework`, `theory`, `practice`, `intensive`, `keks`];
- let hashTags = new Set();
- for (let i=0; i<getRandomInteger(0,MAX_HASHTAG_COUNT);i++) {
-   hashTags.add(tags[getRandomInteger(0,tags.length-1)]);
- };
- return hashTags;
+  const MAX_HASHTAG_COUNT = 3;
+  const tags = [`homework`, `theory`, `practice`, `intensive`, `keks`];
+  let hashTags = new Set();
+  for (let i = 0; i < getRandomInteger(0, MAX_HASHTAG_COUNT); i++) {
+    hashTags.add(tags[getRandomInteger(0, tags.length - 1)]);
+  }
+  return hashTags;
 };
 
 export const generateTask = () => {

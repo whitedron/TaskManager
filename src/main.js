@@ -25,7 +25,6 @@ const taskListElement = siteMainElement.querySelector(`.board__tasks`);
 
 render(taskListElement, createEditTaskTemplate(tasks[0]));
 for (let i = 1; i < TASK_COUNT; i++) {
- // console.log(tasks[i]);
   render(taskListElement, createTaskTemplate(tasks[i]));
 }
 
