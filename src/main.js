@@ -7,7 +7,8 @@ import {createLoadMoreButtonTemplate} from './components/load-more-button.js';
 import {generateTask} from './mock/task.js';
 import {generateFilter} from './mock/filters.js';
 
-const TASK_COUNT = 8;
+const TASK_COUNT = 23;
+const TASK_COUNT_PER_STEP = 8;
 
 const tasks = new Array(TASK_COUNT).fill().map(generateTask);
 const filters = generateFilter(tasks);
@@ -16,7 +17,6 @@ const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);
 };
 
-console.log(tasks, filters);
 const siteMainElement = document.querySelector(`.main`);
 const siteMainHeaderElement = siteMainElement.querySelector(`.main__control`);
 
@@ -27,9 +27,29 @@ render(siteMainElement, createBoardTemplate());
 const taskListElement = siteMainElement.querySelector(`.board__tasks`);
 
 render(taskListElement, createEditTaskTemplate(tasks[0]));
-for (let i = 1; i < TASK_COUNT; i++) {
+for (let i = 1; i < Math.min(tasks.length, TASK_COUNT_PER_STEP); i++) {
   render(taskListElement, createTaskTemplate(tasks[i]));
 }
 
+const boardContainerElement = siteMainElement.querySelector(`.board`);
 
-render(taskListElement, createLoadMoreButtonTemplate());
+if (tasks.length > TASK_COUNT_PER_STEP) {
+  let renderedTaskCount = TASK_COUNT_PER_STEP;
+  render(boardContainerElement, createLoadMoreButtonTemplate(), `beforeend`);
+
+  const loadMoreButton = boardContainerElement.querySelector(`.load-more`);
+
+  loadMoreButton.addEventListener(`click`, (evt) => {
+    evt.preventDefault();
+
+    tasks
+      .slice(renderedTaskCount, renderedTaskCount + TASK_COUNT_PER_STEP)
+      .forEach((task) => render(taskListElement, createTaskTemplate(task), `beforeend`));
+
+    renderedTaskCount += TASK_COUNT_PER_STEP;
+
+    if (renderedTaskCount >= tasks.length) {
+      loadMoreButton.remove();
+    }
+  });
+}
