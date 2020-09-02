@@ -77,7 +77,7 @@ const createTaskEditHashTagTemplate = (hashTags) => {
 };
 
 
-export const createEditTaskTemplate = (task = {}) => {
+export const createTaskEditTemplate = (task = {}) => {
   const {
     color = `black`,
     description = ``,
