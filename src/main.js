@@ -2,9 +2,9 @@ import SiteMenuView from './components/main-menu.js';
 
 import TaskEditView from './components/edit-task.js';
 import TaskView from './components/task.js';
-import { generateTask } from './mock/task.js';
-import { generateFilter } from './mock/filters.js';
-import { renderTemplate, render, RenderPosition } from "./utils.js";
+import {generateTask} from './mock/task.js';
+import {generateFilter} from './mock/filters.js';
+import {render, RenderPosition} from "./utils.js";
 import LoadMoreButtonView from "./components/load-more-button.js";
 import BoardView from "./components/board.js";
 import SortView from "./components/sort.js";
