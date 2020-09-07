@@ -1,5 +1,5 @@
-import AbstractView from `./abstract.js`;
-import {isTaskExpired, isTaskRepeating, humanizeTaskDueDate} from `../utils`;
+import AbstractView from './abstract.js';
+import {isTaskExpired, isTaskRepeating, humanizeTaskDueDate} from '../utils';
 
 const renderHashTags = (hashTags) => {
   return [...hashTags].map((hashTag) => `
