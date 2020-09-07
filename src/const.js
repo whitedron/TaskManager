@@ -40,3 +40,9 @@ export const FilterType = {
   TAGS: `tags`,
   TODAY: `today`,
 };
+
+export const SortType = {
+  DEFAULT: `default`,
+  DATE_DOWN: `date-down`,
+  DATE_UP: `date-up`
+};
