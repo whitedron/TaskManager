@@ -1,4 +1,5 @@
-import {isTaskExpired, isTaskRepeating, humanizeTaskDueDate, createElement} from "../utils";
+import AbstractView from `./abstract.js`;
+import {isTaskExpired, isTaskRepeating, humanizeTaskDueDate} from `../utils`;
 
 const renderHashTags = (hashTags) => {
   return [...hashTags].map((hashTag) => `
@@ -84,26 +85,13 @@ const createTaskTemplate = (task) => {
   );
 };
 
-export default class Task {
+export default class Task extends AbstractView{
   constructor(task) {
+    super();
     this._task = task;
-
-    this._element = null;
   }
 
   getTemplate() {
     return createTaskTemplate(this._task);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
