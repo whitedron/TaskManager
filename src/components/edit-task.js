@@ -172,7 +172,7 @@ const createTaskEditTemplate = (task) => {
   );
 };
 
-export default class TaskEdit extends AbstractView{
+export default class TaskEdit extends AbstractView {
   constructor(task) {
     super();
     this._task = task || BLANK_TASK;

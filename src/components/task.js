@@ -85,7 +85,7 @@ const createTaskTemplate = (task) => {
   );
 };
 
-export default class Task extends AbstractView{
+export default class Task extends AbstractView {
   constructor(task) {
     super();
     this._task = task;
